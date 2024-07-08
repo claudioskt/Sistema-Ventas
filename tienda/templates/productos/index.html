@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Inventario</title>
+{% endblock %}
+{% load static %}
+{% block body %}
+<div class="container-main">
+    <div class="main-content">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-center product-list-title">Productos</h2>
+                <!-- Campo de búsqueda de productos -->
+                <div class="form-group">
+                    <input type="text" class="form-control" id="buscarProducto" placeholder="Buscar productos...">
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Código</th>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Cantidad en stock</th>
+                            <th scope="col">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productoLista">
+                        {% for p in productos %}
+                        <tr class="producto-item">
+                            <td class="producto-codigo">{{ p.codigo }}</td>
+                            <td class="producto-nombre">{{ p.nombre }}</td>
+                            <td>{{ p.precio }}</td>
+                            <td>{{ p.cantidad }}</td>
+                            <td>
+                                <a href="/productos/editar/{{ p.codigo }}" class="btn btn-info btn-sm">Editar</a>
+                                <a href="/productos/eliminar/{{ p.codigo }}" class="btn btn-danger btn-sm">Eliminar</a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5">No hay productos disponibles.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="card-footer text-right">
+                    <a href="/productos/crear" class="btn btn-success">Agregar producto</a>
+                    <form action="{% url 'descargar_productos_pdf' %}" method="get" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Descargar Inventario</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="/static/js/script.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // Búsqueda en tiempo real
+        $('#buscarProducto').on('input', function() {
+            const searchTerm = $(this).val().toLowerCase();
+            $('.producto-item').each(function() {
+                const productName = $(this).find('.producto-nombre').text().toLowerCase();
+                const productCode = $(this).find('.producto-codigo').text().toLowerCase();
+                if (productName.includes(searchTerm) || productCode.includes(searchTerm)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+</script>
+
+
+{% endblock %}

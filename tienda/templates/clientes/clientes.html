@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Clientes</title>
+{% endblock %}
+{% load static %}
+{% block body %}
+<div class="container-main">
+    <div class="main-content">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-center product-list-title">Clientes</h2>
+                <!-- Campo de búsqueda de clientes -->
+                <div class="form-group">
+                    <input type="text" class="form-control" id="buscarCliente" placeholder="Buscar Clientes...">
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Código</th>
+                            <th scope="col">Rut</th>
+                            <th scope="col">Nombre / Razón Social</th>
+                            <th scope="col">Dirección</th>
+                            <th scope="col">Giro Comercial</th>
+                            <th scope="col">Comuna</th>
+                            <th scope="col">Teléfono</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clienteLista">
+                        {% for c in clientes %}
+                        <tr class="cliente-item">
+                            <td class="cliente-codigo">{{ c.codigo_cliente }}</td>
+                            <td class="cliente-rut">{{ c.rut_cliente }}</td>
+                            <td>{{ c.nombre_razon_social_cliente }}</td>
+                            <td>{{ c.direccion_cliente }}</td>
+                            <td>{{ c.giro_comercial_cliente }}</td>
+                            <td>{{ c.comuna_cliente }}</td>
+                            <td>{{ c.telefono_cliente }}</td>
+                            <td>{{ c.email_cliente }}</td>
+                            <td>
+                                <a href="/clientes/editar/{{ c.codigo_cliente }}" class="btn btn-info btn-sm">Editar</a>
+                                <a href="/clientes/eliminar/{{ c.codigo_cliente }}" class="btn btn-danger btn-sm">Eliminar</a>
+                                
+             
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="9">No hay clientes disponibles.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="card-footer text-right">
+                    <a href="/clientes/crear" class="btn btn-success">Agregar cliente</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="/static/js/script.js"></script>
+
+
+{% endblock %}

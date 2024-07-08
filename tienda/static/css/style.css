@@ -1,0 +1,147 @@
+.sidebar {
+  background-color: #343a40;
+  color: #ffffff;
+  width: 250px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 10px;
+}
+
+.sidebar ul li a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.sidebar ul li a:hover {
+  color: #ffffff;
+  background-color: #6c757d;
+}
+
+.sidebar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.home-section {
+  margin-left: 250px; /* Ajusta el margen para dejar espacio a la barra lateral */
+  padding: 20px;
+}
+
+/* diseño tabla de productos*/
+
+body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin: 50px auto;
+            max-width: 800px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+
+        /* En static/css/styles.css */
+
+/* Estilos para el modal 
+
+/* Estilos para mensaje de éxito */
+.alert-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+/* Estilos para el texto dentro del mensaje */
+.alert-success p {
+  margin-bottom: 0;
+}
+
+
+.product-list-title {
+  font-size: 1.5rem;
+  color: #343a40;
+  margin-bottom: 20px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.venta-item {
+  border: 1px solid #dee2e6;
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.producto-lista {
+  max-height: 500px;
+  overflow-y: auto;
+}
+#listaClientes .cliente-seleccionable:hover {
+  background-color: #007bff; /* Cambia el color de fondo al pasar el cursor */
+  color: #fff; /* Cambia el color del texto al pasar el cursor */
+  cursor: pointer; /* Cambia el cursor a pointer para indicar interactividad */
+}
+#eliminarCliente {
+  margin-top: 10px; /* Ajusta según sea necesario */
+}
+
+.total {
+  margin-top: 20px; /* Ajusta según sea necesario */
+}
+
+#tipoDocumentoTexto {
+  font-weight: bold;
+  color: #007bff; /* Color azul */
+}
+
+.card {
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background-color: #f8f9fa; /* Color de fondo gris claro */
+  border-bottom: 1px solid #dee2e6; /* Borde inferior gris */
+}
+

@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Documentos</title>
+{% endblock %}
+{% load static %}
+{% block body %}
+<div class="container-main">
+    <div class="main-content">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-center product-list-title">Documentos</h2>
+                <!-- Campos de búsqueda -->
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="buscarDocumento">Buscar documento:</label>
+                        <input type="text" class="form-control" id="buscarDocumento" placeholder="Buscar Documento...">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="tipoDocumento">Tipo de documento:</label>
+                        <select id="tipoDocumento" class="form-control">
+                            <option value="todos">Todos</option>
+                            <option value="boletas">Boletas</option>
+                            <option value="facturas">Facturas</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="buscarFecha">Buscar por fecha:</label>
+                        <input type="date" class="form-control" id="buscarFecha">
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <button type="button" class="btn btn-primary" id="btnBuscar">Buscar</button>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped table-bordered">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Número</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Cliente</th>
+                            <th scope="col">Monto</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="documentoLista">
+                        {% for d in documentos %}
+                        <tr class="documento-item">
+                            <td class="documento-numero">{{ d.numero }}</td>
+                            <td>{{ d.fecha }}</td>
+                            <td>{{ d.tipo }}</td>
+                            <td>{{ d.cliente }}</td>
+                            <td>{{ d.monto }}</td>
+                            <td>{{ d.estado }}</td>
+                            <td>
+                                <a href="/documentos/editar/{{ d.numero }}" class="btn btn-info btn-sm">Editar</a>
+                                <a href="/documentos/eliminar/{{ d.numero }}" class="btn btn-danger btn-sm">Eliminar</a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="7">No hay documentos disponibles.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="card-footer text-right">
+                    <a href="/documentos/crear" class="btn btn-success">Agregar documento</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#btnBuscar').click(function() {
+            var buscarDocumento = $('#buscarDocumento').val();
+            var tipoDocumento = $('#tipoDocumento').val();
+            var fecha = $('#buscarFecha').val();
+
+        });
+    });
+</script>
+
+
+{% endblock %}
